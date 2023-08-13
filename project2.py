@@ -26,4 +26,13 @@ def guess_number(start, end):
     print(f"congras ! you guess the correct number {secret_number} successfully !")
 
 # now, it is time to play !
-guess_number(0, 10)
+guess_number(0, 100)
+
+
+# TBD, change the above code to score for each round.
+#   if one can guess the number with attempts [1, 5] which means <= 5  attempts, score 'A',
+#   if one can guess the number with attempts [6, 10], score 'B'.
+#   if one can guess the number with attempts [11, 15], score 'C'.
+#   if one can guess the number with attempts [16, 20], score 'D'.
+#   if one can guess the number with attempts [21, 30], score 'E'.
+#   if one fails to guess the number within 30 attempts, score 'F' and quit.

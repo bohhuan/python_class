@@ -1,3 +1,5 @@
+import json
+
 def get_file_content(data_file):
     """
     extract some interested columns data into list of dictionary
@@ -17,11 +19,12 @@ def get_file_content(data_file):
             # each line's items are separated by ",". as the example, the 2nd line 'line_conent' looks like as below.
             # ['1', 'Bulbasaur', 'Grass', 'Poison', '318', '45', '49', '49', '65', '65', '45', '1', 'False\n']
             line_conent = line.split(',')
-            # here, we only care 'Name', 'Attack', and 'Defense' columns data.
+            # here, we only care 'Name', 'Attack', 'Defense' and 'Legendary' columns data.
             cur_line_content['name'] = line_conent[1]
             cur_line_content['attack'] = line_conent[6]
             cur_line_content['defense'] = line_conent[7]
             cur_line_content['speed'] = line_conent[10]
+            cur_line_content['legendary'] = line_conent[-1].strip('\n')          
             # append the current line content to the data_list
             data_list.append(cur_line_content)
 
@@ -33,7 +36,8 @@ def get_file_content(data_file):
 # TBD, update for your local path for this file.
 data_file = '/Users/your_name/Downloads/pokemon.csv'
 list_data = get_file_content(data_file)
-print(list_data)
+# print out the first 10 pokemens only
+print(json.dumps(list_data[:10], indent=2))
 
 # project part - your code starts here.
 
@@ -43,15 +47,9 @@ def find_most_attack_pokemon(list_data):
     return the pokemon name whose attack score is highest
     """
 
-def find_most_defense_pokemon(list_data):
+def get_avg_attack_score(list_data, legendary=True):
     """
-    parameters: list_data
-    return the pokemon name whose defense score is highest
-    """
-
-
-def find_fastest_pokemon(list_data):
-    """
-    parameters: list_data
-    return the pokemon name whose speed is fastest
+    parameters: list_data is list of all pokemon dict data
+                legendary bool, default is 'True'
+    return the avg attack score for legendary pokemons or non-legendary pokemons.
     """
